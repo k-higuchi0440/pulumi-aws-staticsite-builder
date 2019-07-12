@@ -31,16 +31,16 @@ export class StaticWebsite extends pulumi.ComponentResource {
 
     const defaultBucketArgs = createDefaultBucketArgs(bucketName)
     const bucketArgs = Object.assign(defaultBucketArgs, args.bucketPatialArgs)
-    this.bucket = new aws.s3.Bucket(addPrefix(bucketName), bucketArgs, defaultResourceOptions)
+    this.bucket = new aws.s3.Bucket(bucketName, bucketArgs, defaultResourceOptions)
 
-    this.originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(addPrefix(`${bucketName}-access-identity`), {}, defaultResourceOptions)
+    this.originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(`${bucketName}-access-identity`, {}, defaultResourceOptions)
 
     const defaultBucketPolicyArgs = createDefaultBucketPolicyArgs(this.bucket)(this.originAccessIdentity)
-    this.bucketPolicy = new aws.s3.BucketPolicy(addPrefix(`${bucketName}-policy`), defaultBucketPolicyArgs, defaultResourceOptions)
+    this.bucketPolicy = new aws.s3.BucketPolicy(`${bucketName}-policy`, defaultBucketPolicyArgs, defaultResourceOptions)
 
     const defaultDistArgs = createDefaultDistributionArgs(this.bucket)(this.originAccessIdentity)
     const distArgs = Object.assign(defaultDistArgs, args.distributionPartialArgs)
-    this.cloudfront = new aws.cloudfront.Distribution(addPrefix(`${bucketName}-cdn`), distArgs, defaultResourceOptions)
+    this.cloudfront = new aws.cloudfront.Distribution(`${bucketName}-CDN`, distArgs, defaultResourceOptions)
   }
 }
 
