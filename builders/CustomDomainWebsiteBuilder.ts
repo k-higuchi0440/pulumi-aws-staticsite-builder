@@ -4,7 +4,7 @@ import { StaticWebsite, StaticWebsiteArgs } from './../index';
 
 export class CustomDomainWebsiteBuilder {
     bucketPartialArgs: partialargs.s3.BucketPartialArgs
-    DistributionPartialArgs: partialargs.cloudfront.DistributionPartialArgs
+    distributionPartialArgs: partialargs.cloudfront.DistributionPartialArgs
 
     readonly bucketName: string
     readonly domains: Array<string>
@@ -15,12 +15,12 @@ export class CustomDomainWebsiteBuilder {
         this.domains = domains
         this.acmCertificateARN = acmCertificateARN
         this.bucketPartialArgs = {}
-        this.DistributionPartialArgs = {}
+        this.distributionPartialArgs = {}
     }
 
     build(resourceName: string) {
         const customEndpointArgs = createCustomEndpointArgs(this.domains)(this.acmCertificateARN)
-        const mergedDistPartialArgs = Object.assign(this.DistributionPartialArgs, customEndpointArgs)
+        const mergedDistPartialArgs = Object.assign(this.distributionPartialArgs, customEndpointArgs)
 
         const args: StaticWebsiteArgs = {
             bucketPatialArgs: this.bucketPartialArgs,

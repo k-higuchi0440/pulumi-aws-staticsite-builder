@@ -3,14 +3,14 @@ import { StaticWebsite, StaticWebsiteArgs } from './../index';
 
 export class DefaultDomainWebsiteBuilder {
     bucketPartialArgs: partialargs.s3.BucketPartialArgs
-    DistributionPartialArgs: partialargs.cloudfront.DistributionPartialArgs
+    distributionPartialArgs: partialargs.cloudfront.DistributionPartialArgs
 
     readonly bucketName: string
 
     constructor(bucketName: string) {
         this.bucketName = bucketName
         this.bucketPartialArgs = {}
-        this.DistributionPartialArgs = {}
+        this.distributionPartialArgs = {}
     }
 
     build(resourceName: string) {
