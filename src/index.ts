@@ -33,7 +33,7 @@ export class StaticWebsite extends pulumi.ComponentResource {
     const bucketArgs = Object.assign(defaultBucketArgs, args.bucketPatialArgs)
     this.bucket = new aws.s3.Bucket(bucketName, bucketArgs, defaultResourceOptions)
 
-    this.originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(`${bucketName}-access-identity`, {}, defaultResourceOptions)
+    this.originAccessIdentity = new aws.cloudfront.OriginAccessIdentity(`${bucketName}-access-identity`, { comment: bucketName }, defaultResourceOptions)
 
     const defaultBucketPolicyArgs = createDefaultBucketPolicyArgs(this.bucket)(this.originAccessIdentity)
     this.bucketPolicy = new aws.s3.BucketPolicy(`${bucketName}-policy`, defaultBucketPolicyArgs, defaultResourceOptions)
