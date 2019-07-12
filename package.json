@@ -8,7 +8,7 @@
         "@pulumi/awsx": "latest",
         "@pulumi/pulumi": "latest"
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "create static website based on S3 and Cloudfront on AWS. you can change any values with a builder class.",
     "main": "index.js",
     "scripts": {
