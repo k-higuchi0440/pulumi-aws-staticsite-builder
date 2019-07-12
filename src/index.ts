@@ -80,6 +80,7 @@ const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessId
 const createDefaultDistributionArgs = (bucket: aws.s3.Bucket) => (originAccessIdentity: aws.cloudfront.OriginAccessIdentity): aws.cloudfront.DistributionArgs => {
   return {
     enabled: true,
+    waitForDeployment: false,
     isIpv6Enabled: true,
     priceClass: "PriceClass_200",
     defaultRootObject: "index.html",
