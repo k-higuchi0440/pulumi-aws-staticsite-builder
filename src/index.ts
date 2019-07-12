@@ -56,7 +56,7 @@ const createDefaultBucketArgs = (bucketName: string): aws.s3.BucketArgs => {
 }
 
 const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessIdentity: aws.cloudfront.OriginAccessIdentity): aws.s3.BucketPolicyArgs => {
-  const policyJson = pulumi.all([bucket.id, originAccessIdentity.iamArn]).apply(([bucketId, iamArn]) => {
+  const policyJson = pulumi.all([bucket.arn, originAccessIdentity.iamArn]).apply(([bucketARN, iamARN]) => {
     return {
       Version: "2012-10-17",
       Statement: [
@@ -64,8 +64,8 @@ const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessId
           Sid: "PublicReadForGetBucketObjects",
           Effect: "Allow",
           Action: "s3:GetObject",
-          Resource: `${bucketId}/*`,
-          Principal: { AWS: iamArn }
+          Resource: `${bucketARN}/*`,
+          Principal: { AWS: iamARN }
         }
       ]
     }
