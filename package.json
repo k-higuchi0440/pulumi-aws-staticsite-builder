@@ -16,7 +16,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/k-higuchi0440/pulumi-aws-static-website-builder.git"
+        "url": "git+https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder.git"
     },
     "keywords": [
         "pulumi",
@@ -28,7 +28,7 @@
     "author": "k_higuchi <koyohiguchi7788@gmail.com> (https://github.com/k-higuchi0440)",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/k-higuchi0440/pulumi-aws-static-website-builder/issues"
+        "url": "https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder/issues"
     },
-    "homepage": "https://github.com/k-higuchi0440/pulumi-aws-static-website-builder#readme"
+    "homepage": "https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder#readme"
 }
