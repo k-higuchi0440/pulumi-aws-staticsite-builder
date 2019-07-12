@@ -1,12 +1,13 @@
 {
     "compilerOptions": {
-        "outDir": "bin",
+        "outDir": "lib",
         "target": "es6",
         "lib": [
             "es6"
         ],
         "module": "commonjs",
         "moduleResolution": "node",
+        "declaration": true,
         "sourceMap": true,
         "experimentalDecorators": true,
         "pretty": true,
@@ -16,10 +17,7 @@
         "forceConsistentCasingInFileNames": true,
         "strictNullChecks": true,
         "skipLibCheck": true,
-        "allowJs": true,
     },
-    "files": [
-        "index.ts"
-    ],
+    "include": ["src"],
     "exclude": ["node_modules"]
 }
