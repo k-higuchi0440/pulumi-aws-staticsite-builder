@@ -5,7 +5,7 @@
         "lib": [
             "es6"
         ],
-        "module": "commonjs",
+        "module": "es6",
         "moduleResolution": "node",
         "sourceMap": true,
         "experimentalDecorators": true,
@@ -14,9 +14,11 @@
         "noImplicitAny": true,
         "noImplicitReturns": true,
         "forceConsistentCasingInFileNames": true,
-        "strictNullChecks": true
+        "strictNullChecks": true,
+        "skipLibCheck": true
     },
     "files": [
         "index.ts"
-    ]
+    ],
+    "exclude": ["node_modules"]
 }
