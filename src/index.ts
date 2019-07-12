@@ -56,22 +56,24 @@ const createDefaultBucketArgs = (bucketName: string): aws.s3.BucketArgs => {
 }
 
 const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessIdentity: aws.cloudfront.OriginAccessIdentity): aws.s3.BucketPolicyArgs => {
-  const policyJson = {
-    Version: "2012-10-17",
-    Statement: [
-      {
-        Sid: "PublicReadForGetBucketObjects",
-        Effect: "Allow",
-        Action: "s3:GetObject",
-        Resource: pulumi.interpolate`${bucket.arn}/*`,
-        Principal: { AWS: pulumi.interpolate`${originAccessIdentity.iamArn}` }
-      }
-    ]
-  };
+  const policyJson = pulumi.all([bucket.id, originAccessIdentity.iamArn]).apply(([bucketId, iamArn]) => {
+    return JSON.stringify({
+      Version: "2012-10-17",
+      Statement: [
+        {
+          Sid: "PublicReadForGetBucketObjects",
+          Effect: "Allow",
+          Action: "s3:GetObject",
+          Resource: `${bucketId}/*`,
+          Principal: { AWS: iamArn }
+        }
+      ]
+    })
+  });
 
   return {
-    bucket: pulumi.interpolate`${bucket.id}`,
-    policy: JSON.stringify(policyJson)
+    bucket: bucket.id,
+    policy: policyJson
   }
 }
 
@@ -83,15 +85,15 @@ const createDefaultDistributionArgs = (bucket: aws.s3.Bucket) => (originAccessId
     defaultRootObject: "index.html",
     origins: [
       {
-        originId: pulumi.interpolate`${bucket.id}`,
-        domainName: pulumi.interpolate`${bucket.bucketRegionalDomainName}`,
+        originId: bucket.id,
+        domainName: bucket.bucketRegionalDomainName,
         s3OriginConfig: {
-          originAccessIdentity: pulumi.interpolate`${originAccessIdentity.cloudfrontAccessIdentityPath}`
+          originAccessIdentity: originAccessIdentity.cloudfrontAccessIdentityPath
         }
       }
     ],
     defaultCacheBehavior: {
-      targetOriginId: pulumi.interpolate`${bucket.id}`,
+      targetOriginId: bucket.id,
       allowedMethods: ["GET", "HEAD"],
       cachedMethods: ["GET", "HEAD"],
       compress: true,
