@@ -57,7 +57,7 @@ const createDefaultBucketArgs = (bucketName: string): aws.s3.BucketArgs => {
 
 const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessIdentity: aws.cloudfront.OriginAccessIdentity): aws.s3.BucketPolicyArgs => {
   const policyJson = pulumi.all([bucket.id, originAccessIdentity.iamArn]).apply(([bucketId, iamArn]) => {
-    return JSON.stringify({
+    return {
       Version: "2012-10-17",
       Statement: [
         {
@@ -68,12 +68,12 @@ const createDefaultBucketPolicyArgs = (bucket: aws.s3.Bucket) => (originAccessId
           Principal: { AWS: iamArn }
         }
       ]
-    })
+    }
   });
 
   return {
     bucket: bucket.id,
-    policy: policyJson
+    policy: policyJson.apply(json => JSON.stringify(json))
   }
 }
 
