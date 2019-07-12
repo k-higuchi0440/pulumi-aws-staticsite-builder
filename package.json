@@ -1,6 +1,6 @@
 {
     "name": "@k_higuchi/pulumi-aws-staticsite-builder",
-    "version": "1.0.2",
+    "version": "0.1.0",
     "description": "create static website based on S3 and Cloudfront on AWS. you can change any values with a builder class.",
     "author": "k_higuchi <koyohiguchi7788@gmail.com> (https://github.com/k-higuchi0440)",
     "repository": {
