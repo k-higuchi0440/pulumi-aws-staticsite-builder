@@ -1,0 +1,3 @@
+name: pulumi-aws-staticsite-builder
+runtime: nodejs
+description: static website hosting with AWS S3 and Cloudfront. you can modify settings of the resources
