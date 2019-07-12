@@ -1,13 +1,5 @@
 {
     "name": "@k_higuchi/pulumi-aws-staticsite-builder",
-    "devDependencies": {
-        "@types/node": "latest"
-    },
-    "dependencies": {
-        "@pulumi/aws": "latest",
-        "@pulumi/awsx": "latest",
-        "@pulumi/pulumi": "latest"
-    },
     "version": "1.0.1",
     "description": "create static website based on S3 and Cloudfront on AWS. you can change any values with a builder class.",
     "main": "index.js",
@@ -30,5 +22,13 @@
     "bugs": {
         "url": "https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder/issues"
     },
-    "homepage": "https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder#readme"
+    "homepage": "https://github.com/k-higuchi0440/pulumi-aws-staticsite-builder#readme",
+    "devDependencies": {
+        "@types/node": "^12.6.2",
+        "typescript": "^3.5.3"
+    },
+    "dependencies": {
+        "@pulumi/aws": "^0.18.20",
+        "@pulumi/pulumi": "^0.17.21"
+    }
 }
