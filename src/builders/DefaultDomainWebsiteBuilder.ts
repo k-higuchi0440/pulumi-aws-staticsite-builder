@@ -16,7 +16,7 @@ export class DefaultDomainWebsiteBuilder {
     build(resourceName: string) {
         const args: StaticWebsiteArgs = {
             bucketPatialArgs: this.bucketPartialArgs,
-            distributionPartialArgs: this.bucketPartialArgs
+            distributionPartialArgs: this.distributionPartialArgs
         }
         return new StaticWebsite(resourceName, this.bucketName, args)
     }

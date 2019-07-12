@@ -31,13 +31,13 @@ export class CustomDomainWebsiteBuilder {
 
 }
 
-const createCustomEndpointArgs = (domains: Array<string>) => (acmCertificateARN: string) => (args: aws.cloudfront.DistributionArgs): partialargs.cloudfront.DistributionPartialArgs => {
-    return Object.assign(args, {
+const createCustomEndpointArgs = (domains: Array<string>) => (acmCertificateARN: string): partialargs.cloudfront.DistributionPartialArgs => {
+    return {
         aliases: domains,
         viewerCertificate: {
             acmCertificateArn: acmCertificateARN,
             sslSupportMethod: "sni-only",
             minimumProtocolVersion: "TLSv1"
         }
-    })
+    }
 }
