@@ -22,7 +22,8 @@
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "publish": "npm run build && npm publish"
     },
     "devDependencies": {
         "@types/node": "^12.6.2",
